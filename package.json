@@ -22,5 +22,8 @@
     "gh-pages": "^6.1.1",
     "parcel": "^2.8.3",
     "posthtml-include": "^1.7.4"
+  },
+  "dependencies": {
+    "notiflix": "^3.2.7"
   }
 }
