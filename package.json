@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
+    "gh-pages": "^6.1.1",
     "parcel": "^2.8.3",
     "posthtml-include": "^1.7.4"
   }
