@@ -8,3 +8,4 @@ import './scripts/modal_queue';
 import './scripts/modal_students';
 import './scripts/modal_watched';
 import './scripts/select_page';
+import './scripts/loader';
