@@ -51,8 +51,8 @@ async function fetchMovies(page) {
             .filter(name => name !== null);
     });
 
-    const totalItems = data.total_results;
-    const totalPages = Math.ceil(totalItems / moviesPerPage);
+  const totalItems = 400;
+  const totalPages = Math.ceil(totalItems / moviesPerPage);
 
     return { movies, totalItems, totalPages };
 }
@@ -83,38 +83,40 @@ async function displayMovies() {
             title.classList.add('movie-title');
             movieInfo.appendChild(title);
 
-            const subtitle = document.createElement('h3');
-            const year = movie.release_date ? movie.release_date.substring(0, 4) : 'N/A';
-            const genre = movie.genres ? movie.genres.slice(0, 3).join(', ') : 'N/A';
-            subtitle.textContent = `${genre} | ${year}`;
-            subtitle.classList.add('movie-subtitle');
-            movieInfo.appendChild(subtitle);
-        });
+      const subtitle = document.createElement('h3');
+      const year = movie.release_date ? movie.release_date.substring(0, 4) : 'N/A';
+      const genre = movie.genres ? movie.genres.slice(0, 3).join(', ') : 'N/A';
+      subtitle.textContent = `${genre} | ${year}`;
+      subtitle.classList.add('movie-subtitle');
+      movieInfo.appendChild(subtitle);
+    });
+// Niżej paginacja
+  
 
-        pagContainer.innerHTML = '';
-        const pagination = new Pagination(pagContainer, {
-            totalItems,
-            itemsPerPage: moviesPerPage,
-            visiblePages: 5,
-            page: currentPage,
-            centerAlign: true,
-            template: {
-                page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-                currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-                moveButton:
-                    '<a href="#" class="tui-page-btn tui-{{type}}">' +
-                    '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                    '</a>',
-                disabledMoveButton:
-                    '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-                    '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                    '</span>',
-                moreButton:
-                    '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-                    '<span class="tui-ico-ellip">...</span>' +
-                    '</a>'
-            }
-        });
+    pagContainer.innerHTML = '';
+    const pagination = new Pagination(pagContainer, {
+      totalItems,
+      itemsPerPage: moviesPerPage,
+      visiblePages: 5,      
+      page: currentPage,
+      centerAlign: true,
+      template: {
+        page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+        currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+        moveButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}">' +
+          '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</a>',
+        disabledMoveButton:
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+          '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</span>',
+        moreButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+          '<span class="tui-ico-ellip">...</span>' +
+          '</a>',
+      },
+    });
 
         pagination.on('afterMove', async e => {
             currentPage = e.page;
