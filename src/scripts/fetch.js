@@ -57,7 +57,7 @@ async function fetchMovies(page) {
       .filter(name => name !== null);
   });
 
-  const totalItems = data.total_results;
+  const totalItems = 400;
   const totalPages = Math.ceil(totalItems / moviesPerPage);
 
   return { movies, totalItems, totalPages };
@@ -96,84 +96,8 @@ async function displayMovies() {
       subtitle.classList.add('movie-subtitle');
       movieInfo.appendChild(subtitle);
     });
-
-
-  const totalItems = 400;
-  const totalPages = Math.ceil(totalItems / moviesPerPage);
-
-    return { movies, totalItems, totalPages };
-}
-
-async function displayMovies() {
-    try {
-        const { movies, totalItems } = await fetchMovies(currentPage);
-
-        gallery.innerHTML = '';
-        movies.forEach(movie => {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            gallery.appendChild(card);
-
-            const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-            const posterImage = document.createElement('img');
-            posterImage.src = posterUrl;
-            posterImage.alt = movie.title;
-            posterImage.classList.add('movie-poster');
-            card.appendChild(posterImage);
-
-            const movieInfo = document.createElement('div');
-            movieInfo.classList.add('movie-info');
-            card.appendChild(movieInfo)
-
-            const title = document.createElement('h2');
-            title.textContent = movie.title;
-            title.classList.add('movie-title');
-            movieInfo.appendChild(title);
-
-      const subtitle = document.createElement('h3');
-      const year = movie.release_date ? movie.release_date.substring(0, 4) : 'N/A';
-      const genre = movie.genres ? movie.genres.slice(0, 3).join(', ') : 'N/A';
-      subtitle.textContent = `${genre} | ${year}`;
-      subtitle.classList.add('movie-subtitle');
-      movieInfo.appendChild(subtitle);
-    });
-// Niżej paginacja
-  
-
-    pagContainer.innerHTML = '';
-    const pagination = new Pagination(pagContainer, {
-      totalItems,
-      itemsPerPage: moviesPerPage,
-      visiblePages: 5,      
-      page: currentPage,
-      centerAlign: true,
-      template: {
-        page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-        currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-        moveButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}">{{type}}</span>' +
-          '</a>',
-        disabledMoveButton:
-          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}">{{type}}</span>' +
-          '</span>',
-        moreButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-          '<span class="tui-ico-ellip">...</span>' +
-          '</a>',
-      },
-    });
-
-        pagination.on('afterMove', async e => {
-            currentPage = e.page;
-            await displayMovies();
-        });
-    } catch (error) {
-        Notiflix.Notify.failure(`Search result not successful. Enter the correct movie name and`);
-    }
-=======
-    pagContainer.innerHTML = '';
+    
+   pagContainer.innerHTML = '';
     const pagination = new Pagination(pagContainer, {
       totalItems,
       itemsPerPage: moviesPerPage,
