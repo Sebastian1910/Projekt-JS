@@ -1,0 +1,121 @@
+.library_header {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.56);
+  background-image: url(../images/header-main/header-mobile-min.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 100;
+}
+
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .library_header {
+    background-image: url('../images/header-main/header-mob@2x-min.png');
+  }
+}
+
+.header_wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 54px;
+}
+.navigation_list {
+  display: flex;
+}
+
+.navigation_list_item {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.17px;
+  font-size: 12px;
+  text-transform: uppercase;
+  &:not(:last-child) {
+    margin-right: 32px;
+  }
+}
+.navigation_list_link {
+  position: relative;
+  text-transform: uppercase;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+}
+
+.buttons_block {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px;
+}
+
+.button {
+  width: 148px;
+  height: 42px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: transparent;
+  text-transform: uppercase;
+
+  &:first-child {
+    margin-right: 16px;
+  }
+
+  &:hover,
+  &:focus,
+  &.active {
+    border: none;
+    background-color: #ff6b08;
+    box-shadow: 0 0 15px #ff6b08;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.navigation_list_link {
+  position: relative;
+  text-transform: uppercase;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+}
+
+.is-active-library {
+  background-color: #ff6b08;
+  border: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .library_header {
+    background-image: url(../images/header-main/header-tablet-min.png);
+  }
+
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .library_header {
+      background-image: url('../images/header-main/header-tablet@2x-min.png');
+    }
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .library_header {
+    background-image: url(../images/header-main/header-desktop-min.png);
+  }
+
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .library_header {
+      background-image: url('../images/header-main/header-desktop@2x-min.png');
+    }
+  }
+}
