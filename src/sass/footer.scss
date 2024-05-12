@@ -1,0 +1,77 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer {
+  background-color: #f7f7f7;
+  text-align: center;
+  width: 100vw;
+}
+@media only screen and (min-width: 320px) {
+  .footer {
+    height: 100px;
+    padding-top: 28.71px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .footer {
+    height: 79px;
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .footer {
+    height: 77px;
+    padding-top: 29px;
+  }
+}
+.footer__items {
+  color: #545454;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+@media only screen and (min-width: 320px) {
+  .footer__items {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .footer__items {
+    display: inline-block;
+  }
+}
+.footer__students {
+  color: #545454;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: underline;
+}
+@media only screen and (min-width: 768px) {
+  .footer__students {
+    font-size: 16px;
+  }
+}
+.footer__students:focus,
+.footer__sudents:hover {
+  cursor: pointer;
+}
+.button-footer {
+  border: none;
+  background-color: transparent;
+}
