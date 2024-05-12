@@ -1,0 +1,36 @@
+.tui-pagination {
+    margin: 30 auto !important;
+    width: 374px;
+}
+
+.tui-pagination .tui-page-btn {
+    width: 40px;
+    border-radius: 5px;
+    color: #000;
+    margin-inline: 2px;
+}
+
+.tui-pagination .tui-is-selected {
+    background: #ff6b08 !important;
+}
+
+.tui-pagination .tui-page-btn:hover {
+    background-color: #f7f7f7;
+}
+
+.tui-pagination .tui-ico-ellip {
+    margin-top: 19px !important;
+}
+
+.tui-first, .tui-last {
+    display: none !important;
+}
+
+.tui-prev, .tui-next {
+    background-color: #f7f7f7;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.tui-page-btn {
+    border: none !important;
+}
