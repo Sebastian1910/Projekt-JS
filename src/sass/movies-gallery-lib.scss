@@ -1,0 +1,61 @@
+.container-lib {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.gallery_lib {
+  padding: 60px 0;
+}
+
+.library_text_empty {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+  color: #000000;
+}
+
+.library_link {
+  color: #ff8c00;
+  cursor: pointer;
+}
+
+.library_img_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.library_img {
+  max-height: 450px;
+  margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .container-lib {
+    width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .container-lib {
+    width: 1280px;
+    padding: 0 32px;
+  }
+
+  .movies_lib {
+    justify-content: flex-start;
+  }
+}
