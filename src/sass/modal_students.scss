@@ -1,0 +1,45 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 760px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+/*.hidden {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}*/
+@media only screen and (min-width: 320px) {
+  .mdl__image {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .mdl__image {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .mdl__image {
+    width: 100%;
+    height: 100%;
+  }
+}
