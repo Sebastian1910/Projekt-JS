@@ -25,3 +25,21 @@ body {
   visibility: hidden;
   opacity: 0;
 }*/
+@media only screen and (min-width: 320px) {
+  .mdl__image {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .mdl__image {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .mdl__image {
+    width: 100%;
+    height: 100%;
+  }
+}
