@@ -10,7 +10,11 @@ const moviesPerPage = 20;
 let currentPage = 1;
 let genresList = [];
 
-async function fetchGenres() {
+function scrollToTop() {  
+  window.scrollTo({ top: 0, behavior: "smooth" })
+};
+
+export async function fetchGenres() {  
   const options = {
     method: 'GET',
     headers: {
@@ -63,7 +67,7 @@ async function fetchMovies(page) {
   return { movies, totalItems, totalPages };
 }
 
-async function displayMovies() {
+export async function displayMovies() {
   try {
     const { movies, totalItems } = await fetchMovies(currentPage);
 
@@ -91,7 +95,7 @@ async function displayMovies() {
 
       const subtitle = document.createElement('h3');
       const year = movie.release_date ? movie.release_date.substring(0, 4) : 'N/A';
-      const genre = movie.genres ? movie.genres.slice(0, 3).join(', ') : 'N/A';
+      const genre = movie.genres ? movie.genres.slice(0, 2).join(', ') : 'N/A';
       subtitle.textContent = `${genre} | ${year}`;
       subtitle.classList.add('movie-subtitle');
       movieInfo.appendChild(subtitle);
@@ -125,6 +129,7 @@ async function displayMovies() {
     pagination.on('afterMove', async e => {
       currentPage = e.page;
       await displayMovies();
+      scrollToTop();
     });
   } catch (error) {
     Notiflix.Notify.failure(`Search result not successful. Enter the correct movie name and`);
