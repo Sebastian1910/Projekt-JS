@@ -11,6 +11,7 @@ const pagContainer = document.querySelector('#tui-pagination-container');
 
 let genresList = [];
 const moviesPerPage = 20;
+let notificationDisplayed = false;
 
 function scrollToTop() {  
   window.scrollTo({ top: 0, behavior: "smooth" })
@@ -113,7 +114,18 @@ async function displaySearchedMovies(page = 1) {
                 },
             });
             return;
-        }
+      }
+
+      if (page === 1) {
+        notificationDisplayed = false;
+      }
+
+      if (!notificationDisplayed) {
+        Notiflix.Notify.success(`Hooray! We have found ${totalResults} movies!`);
+        notificationDisplayed = true;
+      }
+  
+      
     gallery.innerHTML = '';
     movies.forEach(movie => {
       const card = document.createElement('div');
@@ -146,7 +158,7 @@ async function displaySearchedMovies(page = 1) {
       movieInfo.appendChild(subtitle);
     });
       const totalItems = totalResults;
-      Notiflix.Notify.success(`Hooray! We have found ${totalResults} movies!`);
+      
       pagContainer.innerHTML = '';
       
       console.log(totalResults);
