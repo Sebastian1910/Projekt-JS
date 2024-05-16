@@ -10,17 +10,16 @@ const moviesPerPage = 20;
 let currentPage = 1;
 let genresList = [];
 
-function scrollToTop() {  
-  window.scrollTo({ top: 0, behavior: "smooth" })
-};
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-export async function fetchGenres() {  
+export async function fetchGenres() {
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYzA0ZTAxMDQ5ZGY2YTlhNTFmMjI5OTk4MjM5NzM0NyIsInN1YiI6IjY2M2I3YmZiZGQ5OTgxOGU0ZThlZDhkMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-V1V7iNIgAxWC5HtgNgrA9_tiFlCpkK3DLKfKQ3d1tg',
+      Authorization: `Bearer ${apiKey}`,
     },
   };
 
@@ -29,7 +28,7 @@ export async function fetchGenres() {
     const data = await response.json();
     genresList = data.genres;
   } catch (error) {
-    Notiflix.Notify.failure(`Error`);
+    Notiflix.Notify.failure('Błąd podczas pobierania gatunków');
   }
 }
 
@@ -40,8 +39,7 @@ async function fetchMovies(page) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYzA0ZTAxMDQ5ZGY2YTlhNTFmMjI5OTk4MjM5NzM0NyIsInN1YiI6IjY2M2I3YmZiZGQ5OTgxOGU0ZThlZDhkMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-V1V7iNIgAxWC5HtgNgrA9_tiFlCpkK3DLKfKQ3d1tg',
+      Authorization: `Bearer ${apiKey}`,
     },
   };
 
@@ -51,7 +49,6 @@ async function fetchMovies(page) {
   );
   const data = await response.json();
   const movies = data.results;
-  
 
   movies.forEach(movie => {
     movie.genres = movie.genre_ids
@@ -59,10 +56,8 @@ async function fetchMovies(page) {
         const genre = genresList.find(genre => genre.id === id);
         return genre ? genre.name : null;
       })
-      .filter(name => name !== null);    
+      .filter(name => name !== null);
   });
-
-
 
   const totalItems = 400;
   const totalPages = Math.ceil(totalItems / moviesPerPage);
@@ -70,10 +65,74 @@ async function fetchMovies(page) {
   return { movies, totalItems, totalPages };
 }
 
+function createModal() {
+  const modal = document.createElement('div');
+  modal.classList.add('modal-custom');
+  modal.innerHTML = `
+    <div class="modal-content-custom">
+      <span class="close-button-custom">&times;</span>
+      <img class="modal-poster-custom" src="" alt="Plakat filmu">
+      <div class="modal-details-custom">
+        <h2 class="modal-title-custom"></h2>
+        <ul class="modal-info-custom">
+          <li class="modal-votes-custom"><strong>Vote / Votes:</strong> <span class="modal-vote-value-custom"></span> / <span class="modal-vote-count-custom"></span></li>
+          <li class="modal-popularity-custom"><strong>Popularity:</strong> <span class="modal-popularity-value-custom"></span></li>
+          <li class="modal-original-title-custom"><strong>Original Title:</strong> <span class="modal-original-title-value-custom"></span></li>
+          <li class="modal-genre-custom"><strong>Genre:</strong> <span class="modal-genre-value-custom"></span></li>
+        </ul>
+        <div class="modal-about-custom">
+          <h3>About</h3>
+          <p class="modal-description-custom"></p>
+        </div>
+        <div class="modal-buttons-custom">
+          <button class="add-to-watched-custom">ADD TO WATCHED</button>
+          <button class="add-to-queue-custom">ADD TO QUEUE</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const closeButton = modal.querySelector('.close-button-custom');
+  closeButton.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  return modal;
+}
+
+const modal = createModal();
+
+function openModal(movie) {
+  modal.querySelector(
+    '.modal-poster-custom',
+  ).src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  modal.querySelector('.modal-title-custom').textContent = movie.title;
+  modal.querySelector('.modal-vote-value-custom').textContent = movie.vote_average;
+  modal.querySelector('.modal-vote-count-custom').textContent = movie.vote_count;
+  modal.querySelector('.modal-popularity-value-custom').textContent = movie.popularity;
+  modal.querySelector('.modal-original-title-value-custom').textContent = movie.original_title;
+  modal.querySelector('.modal-genre-value-custom').textContent = movie.genres.join(', ');
+  modal.querySelector('.modal-description-custom').textContent = movie.overview;
+  modal.style.display = 'block';
+}
+
 export async function displayMovies() {
   try {
     const { movies, totalItems } = await fetchMovies(currentPage);
-    
+
     gallery.innerHTML = '';
     movies.forEach(movie => {
       const card = document.createElement('div');
@@ -103,36 +162,10 @@ export async function displayMovies() {
       subtitle.classList.add('movie-subtitle');
       movieInfo.appendChild(subtitle);
 
-      const ratingInfo = document.createElement('span');
-      const rating = movie.vote_average.toFixed(1);
-      ratingInfo.textContent = `${rating}`;
-      ratingInfo.classList.add('rating-info');
-      movieInfo.appendChild(ratingInfo);
-      
-      let styleColor;
-      switch (true) {  
-        case rating >= 8:
-          styleColor = '#00e600';
-          break;
-        case rating >= 6:
-          styleColor = '#ffff00';
-          break;
-        case rating < 5.99:
-          styleColor = '#ff0000';
-          break;
-        default:
-          styleColor = "black";
-      }
-
-      if (rating < 0.05) {
-        ratingInfo.style.display = "none";
-      }
-
-      ratingInfo.style.color = styleColor;
-      ratingInfo.style.borderColor = styleColor;
+      card.addEventListener('click', () => openModal(movie));
     });
-    
-   pagContainer.innerHTML = '';
+
+    pagContainer.innerHTML = '';
     const pagination = new Pagination(pagContainer, {
       totalItems,
       itemsPerPage: moviesPerPage,
@@ -163,9 +196,8 @@ export async function displayMovies() {
       scrollToTop();
     });
   } catch (error) {
-    Notiflix.Notify.failure(`Search result not successful. Enter the correct movie name and`);
+    Notiflix.Notify.failure('Wynik wyszukiwania nieudany. Wprowadź poprawną nazwę filmu.');
   }
-
 }
 
 displayMovies();
