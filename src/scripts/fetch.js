@@ -51,6 +51,7 @@ async function fetchMovies(page) {
   );
   const data = await response.json();
   const movies = data.results;
+  
 
   movies.forEach(movie => {
     movie.genres = movie.genre_ids
@@ -58,8 +59,10 @@ async function fetchMovies(page) {
         const genre = genresList.find(genre => genre.id === id);
         return genre ? genre.name : null;
       })
-      .filter(name => name !== null);
+      .filter(name => name !== null);    
   });
+
+
 
   const totalItems = 400;
   const totalPages = Math.ceil(totalItems / moviesPerPage);
@@ -70,7 +73,7 @@ async function fetchMovies(page) {
 export async function displayMovies() {
   try {
     const { movies, totalItems } = await fetchMovies(currentPage);
-
+    
     gallery.innerHTML = '';
     movies.forEach(movie => {
       const card = document.createElement('div');
@@ -99,6 +102,34 @@ export async function displayMovies() {
       subtitle.textContent = `${genre} | ${year}`;
       subtitle.classList.add('movie-subtitle');
       movieInfo.appendChild(subtitle);
+
+      const ratingInfo = document.createElement('span');
+      const rating = movie.vote_average.toFixed(1);
+      ratingInfo.textContent = `${rating}`;
+      ratingInfo.classList.add('rating-info');
+      movieInfo.appendChild(ratingInfo);
+      
+      let styleColor;
+      switch (true) {  
+        case rating >= 8:
+          styleColor = '#00e600';
+          break;
+        case rating >= 6:
+          styleColor = '#ffff00';
+          break;
+        case rating < 5.99:
+          styleColor = '#ff0000';
+          break;
+        default:
+          styleColor = "black";
+      }
+
+      if (rating < 0.05) {
+        ratingInfo.style.display = "none";
+      }
+
+      ratingInfo.style.color = styleColor;
+      ratingInfo.style.borderColor = styleColor;
     });
     
    pagContainer.innerHTML = '';

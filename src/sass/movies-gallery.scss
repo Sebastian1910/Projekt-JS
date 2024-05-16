@@ -60,6 +60,31 @@
     margin: auto;
 }
 
+.card {
+    position: relative;
+}
+
+.rating-info {
+    position: absolute;
+    top: 2%;
+    border: 2px solid;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    transform: translate(0, 0);
+    transition: transform 0.3s ease;    
+}
+
+.card:hover .movie-poster,
+.card:focus .movie-poster {
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px gray;
+}
+
+
 @media screen and (min-width: 320px) {
     .gallery {
         width: 320px;
@@ -68,6 +93,16 @@
     .no-results-info {
         height: 145px;
         width: 300px;
+    }
+
+    .rating-info {
+        width: 33px;
+        height: 33px;
+        left: 85%;
+    }
+
+    .card:hover .rating-info {
+        transform: translate(2px, -4px);
     }
     
 }
@@ -92,6 +127,14 @@
         width: 400px;
         height: 208px;
     }
+    .rating-info {            
+        width: 35px;
+        height: 35px;
+    }
+    
+    .card:hover .rating-info {
+        transform: translate(3px, -4px);
+    }
 }
 
 @media screen  and (min-width: 1280px) {
@@ -112,11 +155,13 @@
         line-height: 1.2;
         font-size: 20px;
     }    
+    .rating-info {
+        left: 86%;
+        width: 40px;
+        height: 40px;
+    }
+    .card:hover .rating-info {
+        transform: translate(3px, -5px);
+    }
 }
 
-.card:hover .movie-poster,
-.card:focus .movie-poster {
-    transform: scale(1.02);
-    cursor: pointer;
-    box-shadow: 0 0 10px 1px gray;
-}
