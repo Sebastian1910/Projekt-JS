@@ -20,11 +20,11 @@ body {
     max-width: 1280px;
   }
 }
-/*.hidden {
+.hidden {
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
-}*/
+}
 @media only screen and (min-width: 320px) {
   .mdl__image {
     width: 100%;
@@ -79,9 +79,22 @@ body {
   transform: scale(1.02);
   cursor: pointer;
   box-shadow: 0 0 10px 1px gray;
+  border-radius: 5px;
 }
-
-/*-----------------*/
+.mdl__paragraf {
+  text-align: center;
+  font-size: 18px;
+}
+@media only screen and (min-width: 320px) {
+  .mdl__paragraf {
+    font-size: 12px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .mdl__paragraf {
+    font-size: 20px;
+  }
+}
 .modal {
   display: flex;
   position: fixed;
