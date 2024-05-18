@@ -127,6 +127,55 @@ function openModal(movie) {
   modal.querySelector('.modal-genre-value-custom').textContent = movie.genres.join(', ');
   modal.querySelector('.modal-description-custom').textContent = movie.overview;
   modal.style.display = 'block';
+
+  const addWatchedRef = modal.querySelector('.add-to-watched-custom');
+  const addQueueRef = modal.querySelector('.add-to-queue-custom');
+
+  const thisMovieId = movie.id.toString();
+
+  // Update button states based on local storage
+  const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
+  const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
+
+  if (moviesWatched.some(m => m.id === movie.id)) {
+    addWatchedRef.textContent = 'REMOVE FROM WATCHED';
+  } else {
+    addWatchedRef.textContent = 'ADD TO WATCHED';
+  }
+
+  if (moviesQueue.some(m => m.id === movie.id)) {
+    addQueueRef.textContent = 'REMOVE FROM QUEUE';
+  } else {
+    addQueueRef.textContent = 'ADD TO QUEUE';
+  }
+
+  // Add to Watched button click handler
+  addWatchedRef.onclick = function () {
+    let moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
+    if (moviesWatched.some(m => m.id === movie.id)) {
+      moviesWatched = moviesWatched.filter(m => m.id !== movie.id);
+      localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+      addWatchedRef.textContent = 'ADD TO WATCHED';
+    } else {
+      moviesWatched.push(movie);
+      localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+      addWatchedRef.textContent = 'REMOVE FROM WATCHED';
+    }
+  };
+
+  // Add to Queue button click handler
+  addQueueRef.onclick = function () {
+    let moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
+    if (moviesQueue.some(m => m.id === movie.id)) {
+      moviesQueue = moviesQueue.filter(m => m.id !== movie.id);
+      localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+      addQueueRef.textContent = 'ADD TO QUEUE';
+    } else {
+      moviesQueue.push(movie);
+      localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+      addQueueRef.textContent = 'REMOVE FROM QUEUE';
+    }
+  };
 }
 
 export async function displayMovies() {
