@@ -162,6 +162,34 @@ export async function displayMovies() {
       subtitle.classList.add('movie-subtitle');
       movieInfo.appendChild(subtitle);
 
+      const ratingInfo = document.createElement('span');
+      const rating = movie.vote_average.toFixed(1);
+      ratingInfo.textContent = `${rating}`;
+      ratingInfo.classList.add('rating-info');
+      movieInfo.appendChild(ratingInfo);
+
+      let styleColor;
+      switch (true) {
+        case rating >= 8:
+          styleColor = '#00e600';
+          break;
+        case rating >= 6:
+          styleColor = '#ffff00';
+          break;
+        case rating < 5.99:
+          styleColor = '#ff0000';
+          break;
+        default:
+          styleColor = 'black';
+      }
+
+      if (rating < 0.05) {
+        ratingInfo.style.display = 'none';
+      }
+
+      ratingInfo.style.color = styleColor;
+      ratingInfo.style.borderColor = styleColor;
+
       card.addEventListener('click', () => openModal(movie));
     });
 
