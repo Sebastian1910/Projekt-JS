@@ -305,8 +305,8 @@ li {
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: -2px;
+  right: 5px;
 }
 
 .close-button-custom:hover,
@@ -433,7 +433,6 @@ li {
     flex-direction: row;
     padding: 20px;
     max-width: 806px;
-    max-height: 558px;
   }
 
   .modal-poster-custom {
