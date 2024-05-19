@@ -294,27 +294,32 @@ li {
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 90%;
-  max-width: 600px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .close-button-custom {
   color: #aaa;
-  align-self: flex-end;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: -2px;
+  right: 5px;
 }
 
 .close-button-custom:hover,
 .close-button-custom:focus {
   color: black;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .modal-poster-custom {
   width: 100%;
+  height: auto;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .modal-details-custom {
@@ -324,6 +329,7 @@ li {
 .modal-title-custom {
   font-size: 24px;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .modal-info-custom {
@@ -331,51 +337,87 @@ li {
   padding: 0;
   margin: 0;
   margin-bottom: 20px;
+  font-size: 16px;
+  color: #888;
 }
 
 .modal-info-custom li {
   margin-bottom: 10px;
 }
 
+.modal-info-custom .modal-votes-custom {
+  display: flex;
+  align-items: center;
+}
+
+.modal-info-custom .modal-votes-custom strong {
+  margin-right: 5px;
+}
+
+.modal-info-custom .modal-vote-value-custom {
+  background: #ff6b01;
+  margin-right: 13px;
+  font-size: 13px;
+  border-radius: 5px;
+  width: 47px;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
 .modal-about-custom {
   margin-bottom: 20px;
 }
 
+.modal-about-custom h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-description-custom {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 .modal-buttons-custom {
   display: flex;
-  flex-direction: column;
+
   gap: 10px;
 }
 
 .modal-buttons-custom button {
-  padding: 10px 20px;
   cursor: pointer;
-  border: none;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
 }
 
-.add-to-watched-custom {
+.modal-buttons-custom button:active {
   background-color: #ff6b01;
   color: white;
 }
 
-.add-to-queue-custom {
-  background-color: #f7f7f7;
-  color: black;
+.modal-buttons-custom button:hover {
+  transform: translateY(-2px);
 }
 
 /* Tablet styles */
 @media (min-width: 768px) {
   .modal-content-custom {
     flex-direction: row;
-    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 700px;
+    max-width: 80%;
   }
 
   .modal-poster-custom {
-    width: 40%;
+    width: 375px;
+    height: 478px;
     margin-right: 20px;
   }
 
@@ -389,15 +431,13 @@ li {
 @media (min-width: 1024px) {
   .modal-content-custom {
     flex-direction: row;
-    margin: 5% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 70%;
-    max-width: 900px;
+    max-width: 806px;
   }
 
   .modal-poster-custom {
-    width: 30%;
+    width: 375px;
+    height: 478px;
     margin-right: 20px;
   }
 
