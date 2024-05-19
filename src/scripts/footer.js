@@ -27,3 +27,9 @@ document.addEventListener('keyup', e => {
     document.querySelector('.modal.is-visible').classList.remove(isVisible);
   }
 });
+
+function closeModal() {
+    document.querySelector('.modal.is-visible').classList.remove(isVisible);
+  }
+
+document.querySelector('.modal-close').addEventListener('click', closeModal);
