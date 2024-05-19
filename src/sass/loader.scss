@@ -9,38 +9,37 @@
   justify-content: center;
   color: #ccc;
   cursor: pointer;
-  transition: 0.2s linear;
+  transition: .2s linear;
 }
 
 .loader {
-
-  background: #ff6b08;
+  border: solid 5px #ff6b08;
   width: 48px;
   height: 48px;
-  position: relative;
+  position: absolute;
   text-align: center;
   animation: 3s rotate linear infinite;
   transform: perspective(200px) rotateX(50deg);
 }
 
 .loader:before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 50;
-  left: 50;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
-  background: #ffff;
+  border: solid 5px #f7f7f7;
   animation: 1.5s rotate reverse linear infinite;
 
 }
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg)
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: rotate(360deg)
   }
 }
