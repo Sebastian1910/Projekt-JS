@@ -1,15 +1,15 @@
 .loader__div {
-    min-width: 100px;
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ccc;
-    cursor: pointer;
-    transition: .2s linear;
+  min-width: 100px;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.2s linear;
 }
 
 .loader {
@@ -23,14 +23,15 @@
 }
 
 .loader:before {
-    content: "";
-    position: absolute;
-    top: 50;
-    left: 50;
-    height: 100%;
-    width: 100%;
-    background: #FFFF;
-    animation: 1.5s rotate reverse linear infinite;
+  content: '';
+  position: absolute;
+  top: 50;
+  left: 50;
+  height: 100%;
+  width: 100%;
+  background: #ffff;
+  animation: 1.5s rotate reverse linear infinite;
+}
 
 @keyframes rotate {
   0% {
