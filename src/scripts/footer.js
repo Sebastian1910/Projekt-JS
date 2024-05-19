@@ -1,27 +1,29 @@
-const studentsModal = document.querySelector('#studentsModal');
-const openModalBtn = document.querySelector('#openModalBtn');
-const closeModalBtn = document.getElementById('closeModalBtn');
+const openEls = document.querySelectorAll('[data-open]');
+const closeEls = document.querySelectorAll('[data-close]');
+const isVisible = 'is-visible';
 
-openModalBtn.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', closeModal);
+for (const el of openEls) {
+  el.addEventListener('click', function () {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add(isVisible);
+  });
+}
 
-function openModal() {
-  functionsProject.showEl(studentsModal);
-  window.addEventListener('click', widowEvent);
-  window.addEventListener('keydown', keyListener);
+for (const el of closeEls) {
+  el.addEventListener('click', function () {
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+  });
 }
-function closeModal() {
-  functionsProject.hideEl(studentsModal);
-  window.removeEventListener('click', widowEvent);
-  window.removeEventListener('keydown', keyListener);
-}
-function widowEvent(eve) {
-  if (eve.target === studentsModal) {
-    closeModal();
+
+document.addEventListener('click', e => {
+  if (e.target == document.querySelector('.modal.is-visible')) {
+    document.querySelector('.modal.is-visible').classList.remove(isVisible);
   }
-}
-function keyListener(eve) {
-  if (eve.key === 'Escape') {
-    closeModal();
+});
+
+document.addEventListener('keyup', e => {
+  // if we press the ESC
+  if (e.key == 'Escape' && document.querySelector('.modal.is-visible')) {
+    document.querySelector('.modal.is-visible').classList.remove(isVisible);
   }
-}
+});
