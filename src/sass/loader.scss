@@ -13,6 +13,7 @@
 }
 
 .loader {
+
   background: #ff6b08;
   width: 48px;
   height: 48px;
@@ -31,6 +32,7 @@
   width: 100%;
   background: #ffff;
   animation: 1.5s rotate reverse linear infinite;
+
 }
 
 @keyframes rotate {
