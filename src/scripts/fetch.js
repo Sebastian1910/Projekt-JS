@@ -65,7 +65,7 @@ async function fetchMovies(page) {
   return { movies, totalItems, totalPages };
 }
 
-function createModal() {
+export function createModal() {
   const modal = document.createElement('div');
   modal.classList.add('modal-custom');
   modal.innerHTML = `

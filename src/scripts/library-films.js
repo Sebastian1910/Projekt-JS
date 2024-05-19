@@ -1,3 +1,5 @@
+import { createModal } from "./fetch";
+
 document.addEventListener('DOMContentLoaded', () => {
   const watchedBtn = document.querySelector('.button-watched');
   const queueBtn = document.querySelector('.button-queue');
@@ -70,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function openModal(movie) {
   const modal = document.querySelector('.modal-custom');
   modal.querySelector(
-    '.modal-poster-custom',
+    '.modal-poster-custom'
   ).src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   modal.querySelector('.modal-title-custom').textContent = movie.title;
   modal.querySelector('.modal-vote-value-custom').textContent = movie.vote_average;
@@ -97,4 +99,7 @@ function openModal(movie) {
   function closeModal() {
     modal.style.display = 'none';
   }
+
+  document.querySelector('.modal-buttons-custom').style.display = 'none';
+
 }
