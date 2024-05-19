@@ -1,3 +1,9 @@
+.gallery_list {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .container-lib {
   max-width: 1280px;
   margin: 0 auto;
@@ -45,14 +51,12 @@
 @media only screen and (min-width: 768px) {
   .container-lib {
     width: 768px;
-    padding: 0 32px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
   .container-lib {
     width: 1280px;
-    padding: 0 32px;
   }
 
   .movies_lib {
