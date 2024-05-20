@@ -1,3 +1,5 @@
+import { createModal, openModal } from './fetch';
+
 document.addEventListener('DOMContentLoaded', () => {
   const watchedBtn = document.querySelector('.button-watched');
   const queueBtn = document.querySelector('.button-queue');
