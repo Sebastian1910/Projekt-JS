@@ -1,11 +1,14 @@
-import { createModal, openModal } from './fetch';
-
 document.addEventListener('DOMContentLoaded', () => {
   const watchedBtn = document.querySelector('.button-watched');
   const queueBtn = document.querySelector('.button-queue');
   const galleryLib = document.querySelector('.gallery_lib ul');
   const emptyLibraryText = document.querySelector('.library_text_empty');
   const libraryImgContainer = document.querySelector('.library_img_container');
+
+  if (!watchedBtn || !queueBtn || !galleryLib || !emptyLibraryText || !libraryImgContainer) {
+    console.error('One or more required elements are missing from the DOM');
+    return;
+  }
 
   function displayMoviesFromStorage(storageKey) {
     const movies = JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -65,12 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
     displayMoviesFromStorage('movies-queue');
   });
 
-  // Początkowe wyświetlanie obejrzanych filmów po załadowaniu strony
   displayMoviesFromStorage('movies-watched');
 });
 
 function openModal(movie) {
   const modal = document.querySelector('.modal-custom');
+  if (!modal) {
+    console.error('Modal element is missing from the DOM');
+    return;
+  }
+
   modal.querySelector(
     '.modal-poster-custom',
   ).src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -86,9 +93,13 @@ function openModal(movie) {
   const addWatchedRef = modal.querySelector('.add-to-watched-custom');
   const addQueueRef = modal.querySelector('.add-to-queue-custom');
 
+  if (!addWatchedRef || !addQueueRef) {
+    console.error('Add to Watched or Add to Queue buttons are missing from the modal');
+    return;
+  }
+
   const thisMovieId = movie.id.toString();
 
-  // Update button states based on local storage
   const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
   const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
 
@@ -104,7 +115,6 @@ function openModal(movie) {
     addQueueRef.textContent = 'ADD TO QUEUE';
   }
 
-  // Add to Watched button click handler
   addWatchedRef.onclick = function () {
     let moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
     if (moviesWatched.some(m => m.id === movie.id)) {
@@ -118,7 +128,6 @@ function openModal(movie) {
     }
   };
 
-  // Add to Queue button click handler
   addQueueRef.onclick = function () {
     let moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
     if (moviesQueue.some(m => m.id === movie.id)) {
