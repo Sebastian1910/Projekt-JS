@@ -1,4 +1,4 @@
-import { createModal } from "./fetch";
+import { createModal, openModal } from './fetch';
 
 document.addEventListener('DOMContentLoaded', () => {
   const watchedBtn = document.querySelector('.button-watched');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (movies.length === 0) {
       emptyLibraryText.style.display = 'block';
-      libraryImgContainer.style.display = 'block';
+      libraryImgContainer.style.display = 'flex';
     } else {
       emptyLibraryText.style.display = 'none';
       libraryImgContainer.style.display = 'none';
@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
     displayMoviesFromStorage('movies-queue');
   });
 
-  // Initial display of watched movies when the page loads
+  // Początkowe wyświetlanie obejrzanych filmów po załadowaniu strony
   displayMoviesFromStorage('movies-watched');
 });
 
 function openModal(movie) {
   const modal = document.querySelector('.modal-custom');
   modal.querySelector(
-    '.modal-poster-custom'
+    '.modal-poster-custom',
   ).src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   modal.querySelector('.modal-title-custom').textContent = movie.title;
   modal.querySelector('.modal-vote-value-custom').textContent = movie.vote_average;
@@ -83,23 +83,52 @@ function openModal(movie) {
   modal.querySelector('.modal-description-custom').textContent = movie.overview;
   modal.style.display = 'block';
 
-  const closeButton = modal.querySelector('.close-button-custom');
-  closeButton.addEventListener('click', closeModal);
-  modal.addEventListener('click', e => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  });
+  const addWatchedRef = modal.querySelector('.add-to-watched-custom');
+  const addQueueRef = modal.querySelector('.add-to-queue-custom');
 
-  function closeModal() {
-    modal.style.display = 'none';
+  const thisMovieId = movie.id.toString();
+
+  // Update button states based on local storage
+  const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
+  const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
+
+  if (moviesWatched.some(m => m.id === movie.id)) {
+    addWatchedRef.textContent = 'REMOVE FROM WATCHED';
+  } else {
+    addWatchedRef.textContent = 'ADD TO WATCHED';
   }
 
-  document.querySelector('.modal-buttons-custom').style.display = 'none';
+  if (moviesQueue.some(m => m.id === movie.id)) {
+    addQueueRef.textContent = 'REMOVE FROM QUEUE';
+  } else {
+    addQueueRef.textContent = 'ADD TO QUEUE';
+  }
 
+  // Add to Watched button click handler
+  addWatchedRef.onclick = function () {
+    let moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
+    if (moviesWatched.some(m => m.id === movie.id)) {
+      moviesWatched = moviesWatched.filter(m => m.id !== movie.id);
+      localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+      addWatchedRef.textContent = 'ADD TO WATCHED';
+    } else {
+      moviesWatched.push(movie);
+      localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+      addWatchedRef.textContent = 'REMOVE FROM WATCHED';
+    }
+  };
+
+  // Add to Queue button click handler
+  addQueueRef.onclick = function () {
+    let moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
+    if (moviesQueue.some(m => m.id === movie.id)) {
+      moviesQueue = moviesQueue.filter(m => m.id !== movie.id);
+      localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+      addQueueRef.textContent = 'ADD TO QUEUE';
+    } else {
+      moviesQueue.push(movie);
+      localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+      addQueueRef.textContent = 'REMOVE FROM QUEUE';
+    }
+  };
 }
