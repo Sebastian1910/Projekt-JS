@@ -18,6 +18,12 @@
           <li class="navigation_list_item">
             <a class="navigation_list_link" href="./library.html">My Library</a>
           </li>
+          <li class="navigation_list_item">
+            <button type="button" class="authorization-btn register-btn">Register</button>
+          </li>
+          <li class="navigation_list_item">
+            <button type="button" class="authorization-btn login-btn">Login</button>
+          </li>
         </ul>
       </nav>
     </div>
@@ -31,3 +37,28 @@
     </form>
   </div>
 </header>
+<!-- Registration Modal -->
+<div class="modal" id="register-modal">
+  <div class="modal-content">
+    <span class="close-button" id="close-register">&times;</span>
+    <h2>Register</h2>
+    <form id="register-form">
+      <input type="email" id="register-email" placeholder="Email" required />
+      <input type="password" id="register-password" placeholder="Password" required />
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal" id="login-modal">
+  <div class="modal-content">
+    <span class="close-button" id="close-login">&times;</span>
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="email" id="login-email" placeholder="Email" required />
+      <input type="password" id="login-password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
