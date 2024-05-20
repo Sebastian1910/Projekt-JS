@@ -180,7 +180,10 @@ export function openModal(movie) {
 export async function displayMovies() {
   try {
     const { movies, totalItems } = await fetchMovies(currentPage);
-
+    const gallery = document.querySelector('.gallery');
+    if (!gallery) {
+      return;
+    }
     gallery.innerHTML = '';
     movies.forEach(movie => {
       const card = document.createElement('div');
@@ -275,5 +278,4 @@ export async function displayMovies() {
     console.error('Wynik wyszukiwania nieudany. Wprowadź poprawną nazwę filmu.', error);
   }
 }
-
 displayMovies();
