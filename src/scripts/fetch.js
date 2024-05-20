@@ -1,5 +1,4 @@
 import { apiKey } from './api-key';
-import Notiflix from 'notiflix';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
@@ -28,7 +27,7 @@ export async function fetchGenres() {
     const data = await response.json();
     genresList = data.genres;
   } catch (error) {
-    Notiflix.Notify.failure('Błąd podczas pobierania gatunków');
+    console.error('Błąd podczas pobierania gatunków', error);
   }
 }
 
@@ -115,7 +114,7 @@ export function createModal() {
 
 const modal = createModal();
 
-function openModal(movie) {
+export function openModal(movie) {
   modal.querySelector(
     '.modal-poster-custom',
   ).src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -273,7 +272,7 @@ export async function displayMovies() {
       scrollToTop();
     });
   } catch (error) {
-    Notiflix.Notify.failure('Wynik wyszukiwania nieudany. Wprowadź poprawną nazwę filmu.');
+    console.error('Wynik wyszukiwania nieudany. Wprowadź poprawną nazwę filmu.', error);
   }
 }
 
