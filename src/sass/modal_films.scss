@@ -316,27 +316,31 @@ li {
 }
 
 .modal-poster-custom {
-  width: 100%;
+  width: 95%;
   height: auto;
-  margin-bottom: 20px;
+  margin-inline: auto;
   border-radius: 10px;
 }
 
 .modal-details-custom {
   flex: 1;
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 .modal-title-custom {
   font-size: 24px;
-  margin-bottom: 10px;
   text-transform: uppercase;
+
 }
 
 .modal-info-custom {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-bottom: 20px;
   font-size: 16px;
   color: #888;
 }
@@ -356,7 +360,7 @@ li {
 
 .modal-info-custom .modal-vote-value-custom {
   background: #ff6b01;
-  margin-right: 13px;
+  margin-right: 5px;
   font-size: 13px;
   border-radius: 5px;
   width: 47px;
@@ -367,8 +371,9 @@ li {
   color: white;
 }
 
-.modal-about-custom {
-  margin-bottom: 20px;
+
+.modal-vote-count-custom {
+  margin-left: 5px;
 }
 
 .modal-about-custom h3 {
@@ -377,14 +382,15 @@ li {
 }
 
 .modal-description-custom {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
 .modal-buttons-custom {
   display: flex;
-
-  gap: 10px;
+  justify-content: center;
+  gap: 30px;
 }
 
 .modal-buttons-custom button {
@@ -407,11 +413,19 @@ li {
   transform: translateY(-2px);
 }
 
+@media screen and (max-width: 767px) {
+.modal-poster-custom {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+};
+  
+
 /* Tablet styles */
 @media (min-width: 768px) {
   .modal-content-custom {
     flex-direction: row;
-    padding: 20px;
+    padding: 25px;
     max-width: 85%;
   }
 
