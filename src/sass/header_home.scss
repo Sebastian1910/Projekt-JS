@@ -1,4 +1,3 @@
-/* Stylizacja linków */
 a {
   font-style: normal;
   color: inherit;
@@ -24,6 +23,12 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .header {
+    background-image: url('../images/header-main/header-mob@2x-min.png');
+  }
 }
 
 /* Wrapper nagłówka */
@@ -65,8 +70,6 @@ a {
 }
 
 /* Lista nawigacji */
-
-
 .navigation_list {
   display: flex;
   padding: 0;
@@ -81,7 +84,7 @@ a {
   font-weight: 500;
   line-height: 1.17;
   font-size: 12px;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 }
 .navigation_list_item:last-child {
   margin-bottom: 0;
@@ -95,10 +98,10 @@ a {
   font-weight: 500;
   font-size: 14px;
   text-align: center;
-  color: #fff; 
+  color: #fff;
   padding: 5px; /* Dodajemy padding dla lepszego wyglądu */
   border-radius: 5px; /* Zaokrąglone rogi */
-  transition: transform 0.3s ease-in-out; 
+  transition: transform 0.3s ease-in-out;
 }
 .navigation_list_link:hover,
 .navigation_list_link:focus {
@@ -125,10 +128,12 @@ a {
   background: transparent;
   padding: 10px 10px;
 }
-.form-input:focus {
+.form-input:focus,
+.form-input:hover {
   border-bottom: 1px solid #ff001b;
   box-shadow: 0 0 15px #ff001b;
   border-radius: 5px;
+  outline: none; /* Usunięcie obramowania na hover */
 }
 
 .form-input::placeholder {
@@ -157,14 +162,11 @@ a {
   transform: scale(1.2);
 }
 
-
 /* Obecny link nawigacyjny */
 .site_nav_link_current {
   position: relative;
   display: inline-block;
-  }
-
-
+}
 
 .site_nav_link_current::after {
   content: '';
@@ -329,7 +331,6 @@ a {
   }
   .navigation_list_item {
     margin-bottom: 0;
-    
   }
   .container_header {
     width: 768px;
