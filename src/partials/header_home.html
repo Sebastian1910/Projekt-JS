@@ -1,33 +1,83 @@
-<header class="header">
-  <div class="container_header container_header--header">
-    <div class="header_wraper">
-      <div class="logo_container">
-        <a href="./index.html" class="logo-film">
-          <svg class="logo_header" width="24" height="24">
-            <use class="logo-icon" href="./images/film-defs.svg#icon-film"></use>
-          </svg>
-          <span class="logo_name">Filmoteka</span>
-        </a>
-      </div>
 
-      <nav class="header-navigation">
-        <ul class="navigation_list">
-          <li class="navigation_list_item">
-            <a class="navigation_list_link site_nav_link_current" href="./index.html">Home</a>
-          </li>
-          <li class="navigation_list_item">
-            <a class="navigation_list_link" href="./library.html">My Library</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <form class="header_search_form">
-      <div class="search_form">
-        <input type="text" name="search" class="search form-input" placeholder="Movie search" />
-        <button type="submit" class="search-btn">
-          <span class="search_icon"></span>
-        </button>
+<body>
+  <header class="header">
+    <div class="container_header container_header--header">
+      <div class="header_wraper">
+        <div class="logo_container">
+          <a href="./index.html" class="logo-film">
+            <svg class="logo_header" width="24" height="24">
+              <use class="logo-icon" href="./images/film-defs.svg#icon-film"></use>
+            </svg>
+            <span class="logo_name">Filmoteka</span>
+          </a>
+        </div>
+        <nav class="header-navigation">
+          <ul class="navigation_list" id="navigation_list">
+            <li class="navigation_list_item">
+              <a class="navigation_list_link site_nav_link_current" href="./index.html">Home</a>
+            </li>
+            <li class="navigation_list_item my-library" style="display: none;">
+              <a class="navigation_list_link" href="./library.html" id="my-library-link">My Library</a>
+            </li>
+            <li class="navigation_list_item">
+              <button type="button" class="authorization-btn register-btn">Register</button>
+            </li>
+            <li class="navigation_list_item">
+              <button type="button" class="authorization-btn login-btn">Login</button>
+            </li>
+            <li class="navigation_list_item">
+              <button type="button" class="authorization-btn logout-btn" style="display: none">Logout</button>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </form>
+      <form class="header_search_form">
+        <div class="search_form">
+          <input type="text" name="search" class="search form-input" placeholder="Search movies" />
+          <button type="submit" class="search-btn">
+            <span class="search_icon"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <!-- Alert Section -->
+  <div id="alert" class="alert" style="display: none;">This is an alert message!</div>
+
+  <!-- Register Modal -->
+  <div class="modal" id="register-modal">
+    <div class="modal-content">
+      <span class="close-button" id="close-register">&times;</span>
+      <h2>Register</h2>
+      <form id="register-form">
+        <input type="email" id="register-email" placeholder="Email" required />
+        <input type="password" id="register-password" placeholder="Password" required />
+        <button type="submit">Register</button>
+      </form>
+    </div>
   </div>
-</header>
+
+  <!-- Login Modal -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <span class="close-button" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Movie Section -->
+  <section id="movie-section">
+    <div class="movie-list">
+      <include src="./partials/movies-gallery.html"></include>
+    </div>
+  </section>
+
+  
+</body>
+</html>
